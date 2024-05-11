@@ -3,80 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>H5代扣测试</title>
+    <title>简单商品展示页面</title>
     <style>
-        /* 页面样式设置 */
+        /* 页面和背景样式 */
         body, html {
-            height: 100%;
             margin: 0;
             padding: 0;
             font-family: 'Arial', sans-serif;
             background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-            background-size: 400% 400%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh; /* 使得内容垂直居中 */
             animation: gradientBG 15s ease infinite;
         }
+                @keyframes gradientBG {
+                  0% { background-position: 0% 50%; }
+                  50% { background-position: 100% 50%; }
+                  100% { background-position: 0% 50%; }
+                }
 
         .product-card {
             background: #fff;
-            margin: 20px;
+            margin: 20px 0; /* 在商品卡片和按钮之间留出适当的间距 */
             padding: 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
             display: flex;
-            justify-content: space-around;
-            align-items: center;
+            flex-direction: column; /* 将方向改为垂直 */
+            align-items: center; /* 使得商品图片、名称和价格在垂直方向上居中对齐 */
             width: 80%; /* 或根据需要调整 */
             max-width: 600px; /* 最大宽度 */
         }
-        @keyframes gradientBG {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
+
+        .product-image {
+            width: 150px; /* 或根据实际情况调整 */
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px; /* 图片与文本信息之间的距离 */
         }
 
-        .button-container {
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .product-name {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-size: 18px;
+            color: #666;
         }
 
         .redirect-button {
             padding: 15px 30px;
             font-size: 1em;
             color: #fff;
-            background-color: #3498db; /* 蓝色按钮背景 */
+            background-color: #3498db;
             border: none;
             border-radius: 4px;
-            outline: none;
             cursor: pointer;
             transition: background-color 0.3s;
+            text-decoration: none; /* 去除链接下划线 */
         }
 
         .redirect-button:hover {
-            background-color: #2980b9; /* 鼠标悬停时按钮的背景色变深 */
-        }
-
-        /* 适应不同的屏幕尺寸 */
-        @media (max-width: 768px) {
-            .redirect-button {
-                font-size: 0.8em;
-            }
+            background-color: #2980b9;
         }
     </style>
 </head>
 <body>
-  <!-- 商品信息卡片 -->
-  <div class="product-card">
-      <img src="https://www.baidu.com/link?url=fTKj57f4L2FG595MjpwcXpD34mRuWwcAmTwH_qweCrG2-p06vRMrGsukhilqh0u5YeS4_BKvkH2NPSBQ9uApzq&wd=&eqid=d9dce76f0009042900000003663f14b5" alt="product name" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
-      <div class="product-info">
-          <div class="product-name">测试商品</div>
-          <div class="product-price">¥0.01</div>
-      </div>
-  </div>
-    <div class="button-container">
-        <!-- 按钮点击跳转 -->
-        <button class="redirect-button" onclick="window.location.href='https://render.alipay.com/p/s/i/?scheme=alipays%3A%2F%2Fplatformapi%2FstartApp%3FappId%3D60000157%26orderStr%3Dalipay_sdk%253Dalipay-sdk-java-4.39.39.ALL%2526app_id%253D2017060807451366%2526biz_content%253D%25257B%252522agreement_sign_params%252522%25253A%25257B%252522access_params%252522%25253A%25257B%252522channel%252522%25253A%252522ALIPAYAPP%252522%25257D%25252C%252522external_agreement_no%252522%25253A%252522payW20240511095149445%252522%25252C%252522personal_product_code%252522%25253A%252522GENERAL_WITHHOLDING_P%252522%25252C%252522sign_notify_url%252522%25253A%252522https%25253A%25255C%25252F%25255C%25252Fxxxx.com%252522%25252C%252522sign_scene%252522%25253A%252522INDUSTRY%25257CCARRENTAL%252522%25257D%25252C%252522out_trade_no%252522%25253A%252522tradeno20240511095149445%252522%25252C%252522product_code%252522%25253A%252522QUICK_MSECURITY_PAY%252522%25252C%252522subject%252522%25253A%252522%2525E6%2525B5%25258B%2525E8%2525AF%252595%2525E5%252595%252586%2525E5%252593%252581%252522%25252C%252522total_amount%252522%25253A%2525220.01%252522%25257D%2526charset%253DUTF8%2526format%253Djson%2526method%253Dalipay.trade.app.pay%2526sign%253DLkuTIWHoe1i0kqrYX%25252FAHsKtAX7JWhqsm2v%25252F8KAZlcjAo6wrEI8dOY2ZZsyzknNg1vRR5B7Wo3crUJPval8r3bFlreBo0ZokzhlhCLNVx4bCxX3I6lrcF1%25252Bh9opnkPnpRrhjHjLzloylOhREy6bPqFCtV7xricnnfX%25252Bpd6%25252B2TA5E%25253D%2526sign_type%253DRSA%2526timestamp%253D2024-05-11%252B09%25253A51%25253A49%2526version%253D1.0';">支付并签约</button>
+
+    <!-- 商品信息卡片 -->
+    <div class="product-card">
+        <img src="https://cdn.nlark.com/yuque/0/2024/jpeg/224515/1715411348489-b07686f0-cc4f-4d4c-8287-e0fcb77f7f4d.jpeg?x-oss-process=image%2Fformat%2Cwebp" class="product-image">
+        <div class="product-info">
+            <div class="product-name">爱心捐赠</div>
+            <div class="product-price">¥0.01</div>
+        </div>
     </div>
+
+    <!-- 跳转按钮 -->
+    <a href="https://render.alipay.com/p/s/i/?scheme=alipays%3A%2F%2Fplatformapi%2FstartApp%3FappId%3D60000157%26orderStr%3Dalipay_sdk%253Dalipay-sdk-java-4.39.39.ALL%2526app_id%253D2017060807451366%2526biz_content%253D%25257B%252522agreement_sign_params%252522%25253A%25257B%252522access_params%252522%25253A%25257B%252522channel%252522%25253A%252522ALIPAYAPP%252522%25257D%25252C%252522external_agreement_no%252522%25253A%252522payW20240511151111489%252522%25252C%252522personal_product_code%252522%25253A%252522GENERAL_WITHHOLDING_P%252522%25252C%252522sign_notify_url%252522%25253A%252522https%25253A%25255C%25252F%25255C%25252Fxxxx.com%252522%25252C%252522sign_scene%252522%25253A%252522INDUSTRY%25257CCARRENTAL%252522%25257D%25252C%252522out_trade_no%252522%25253A%252522tradeno20240511151111489%252522%25252C%252522product_code%252522%25253A%252522QUICK_MSECURITY_PAY%252522%25252C%252522subject%252522%25253A%252522%2525E6%2525B5%25258B%2525E8%2525AF%252595%2525E5%252595%252586%2525E5%252593%252581%252522%25252C%252522total_amount%252522%25253A%2525220.01%252522%25257D%2526charset%253DUTF8%2526format%253Djson%2526method%253Dalipay.trade.app.pay%2526sign%253DTgvL195%25252F0NmCTN1rTOl79x23dclyXWAL0f8BqvXSQSLPm1nKoAVvCN7L%25252FXc5pBYXmm8NSFVIlVtswpYrhfTr7I5VNjMYpR894Qa4u2se5fSFbQmP7Z4k%25252Bx%25252FHvvCtneGl2zK94H%25252FAXdrTp1vykixXE2rWuRn6iBFir7tTYLgYVBo%25253D%2526sign_type%253DRSA%2526timestamp%253D2024-05-11%252B15%25253A11%25253A11%2526version%253D1.0" class="redirect-button">支付并签约</a>
+
 </body>
 </html>
