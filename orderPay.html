@@ -1,107 +1,14 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>车险下单页</title>
-  <script>
-        function doTradePay() {
-
-
-          alert("doAction方法被触发！");
-            AlipayJSBridge.call("tradePay", {
-              orderStr: "alipay_sdk=alipay-sdk-java-4.39.39.ALL&app_id=2017060807451366&biz_content=%7B%22out_trade_no%22%3A%22tradeno20240514153103407%22%2C%22product_code%22%3A%22QUICK_MSECURITY_PAY%22%2C%22subject%22%3A%22%E6%B5%8B%E8%AF%95%E5%95%86%E5%93%81%22%2C%22total_amount%22%3A%220.01%22%7D&charset=UTF8&format=json&method=alipay.trade.app.pay&sign=C7nTw1%2BRTadsQmodtZG6SxOAB31wONTQVvycalK%2F6FLrbSMyjpwdNiPGhCH3oa75UeUoqV57Q7WE%2FsJGoxfe6LLiNZ%2FSBeJYPu2nexZt%2FqMv9Wg3aptr0e8wp%2F0q0zQtlSoR%2BkSwY6GGXMvG4ILA%2FoY%2BqASUpgiUF2DxDrGV7Dw%3D&sign_type=RSA&timestamp=2024-05-14+15%3A31%3A03&version=1.0"
-            }, function(result) {
-              alert(JSON.stringify(result));
-            });
-          
+    <title>触发方法示例</title>
+    <script>
+        function doAction() {
+            alert("doAction方法被触发！");
         }
-
-  </script>
-  <style>
-        /* 页面和背景样式 */
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh; /* 使得内容垂直居中 */
-            animation: gradientBG 15s ease infinite;
-        }
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        .button {
-           background-color: #3498db;
-           color: white;
-           border: none;
-           padding: 10px 20px;
-           margin-top: 20px;
-           cursor: pointer;
-           text-align: center;
-         }
-         .button-container {
-             display: flex;
-             flex-direction: column;
-         }
-    </style>
+    </script>
 </head>
-
 <body>
-  <div class="container">
-    <h2>车险下单</h2>
-
-    <div class="form-group">
-      <label for="投保人姓名">投保人姓名：</label>
-      <input type="text" id="投保人姓名" value="苦力小琪">
-    </div>
-
-    <div class="form-group">
-      <label for="身份证号码">身份证号码：</label>
-      <input type="text" id="身份证号码" value="110101199801014231">
-    </div>
-
-    <div class="form-group">
-      <label for="联系电话">联系电话：</label>
-      <input type="tel" id="联系电话" value="19987651234">
-    </div>
-
-    <div class="form-group">
-      <label for="车牌号码">车牌号码：</label>
-      <input type="text" id="车牌号码" value="京 A12345">
-    </div>
-
-    <div class="form-check" >
-      <label>交强险：</label>
-      <input type="checkbox" checked>
-    </div>
-
-    <div class="form-check">
-      <label>商业险：</label>
-      <input type="checkbox">
-    </div>
-
-    <div class="form-group">
-      <label for="总保费">总保费：</label>
-      <input type="number" id="总保费" placeholder="8500.37元">
-    </div>
-
-    <div class="form-group">
-      <label for="支付方式">支付方式：</label>
-      <input type="text" id="支付方式" placeholder="支付方式">
-    </div>
-
-    <div class="button-container">
-      <button class="button" onclick="doTradePay()">支付宝支付</button>
-    </div>
-  </div>
+    <button onclick="doAction()">点击触发方法</button>
 </body>
-
 </html>
