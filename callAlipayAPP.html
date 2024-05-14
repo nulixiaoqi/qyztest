@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>献爱心</title>
+    <style>
+        /* 页面和背景样式 */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh; /* 使得内容垂直居中 */
+            animation: gradientBG 15s ease infinite;
+        }
+                @keyframes gradientBG {
+                  0% { background-position: 0% 50%; }
+                  50% { background-position: 100% 50%; }
+                  100% { background-position: 0% 50%; }
+                }
+
+        .product-card {
+            background: #fff;
+            margin: 20px 0; /* 在商品卡片和按钮之间留出适当的间距 */
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column; /* 将方向改为垂直 */
+            align-items: center; /* 使得商品图片、名称和价格在垂直方向上居中对齐 */
+            width: 80%; /* 或根据需要调整 */
+            max-width: 600px; /* 最大宽度 */
+        }
+
+        .product-image {
+            width: 150px; /* 或根据实际情况调整 */
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px; /* 图片与文本信息之间的距离 */
+        }
+
+        .product-name {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .product-dec {
+            font-size: 12px;
+            color: #EE7B7A;
+            margin-bottom: 10px;
+        }
+        .button-dec {
+            font-size: 16px;
+            margin-bottom: 1px;
+        }
+        .product-price {
+            font-size: 18px;
+            color: #666;
+        }
+
+.button-container {
+      display: flex;
+      flex-direction: column;
+    }
+
+   .button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      text-align: center;
+    }
+    </style>
+</head>
+<body>
+
+    <!-- 商品信息卡片 -->
+    <div class="product-card">
+        <img src="https:\/\/mdn.alipayobjects.com\/afts\/img\/A*7_9ZS5_w2FkAAAAAAAAAAAAAARwnAQ\/original?bz=promo_merchant" class="product-image">
+        <div class="product-info">
+            <div class="product-name">爱心捐赠¥0.01</div>
+            <div class="product-dec">车险看着不错点击确认下单吧</div>
+        </div>
+    </div>
+    <div class="button-container">
+        <div class="button-dec">无landing页面</div>
+        <button class="button" onclick="window.location.href='alipays://platformapi/startapp?appId=20000067&action=WebView&url=https%3A%2F%2Fwww.mayibao.cn%2F'">支付宝支付</button>
+
+        <div class="button-dec">有landing页面</div>
+        <button class="button" onclick="window.location.href='https://render.alipay.com/p/s/i/?scheme=alipays%3A%2F%2Fplatformapi%2Fstartapp%3FappId%3D20000067%26action%3DWebView%26url%3Dhttps%253A%252F%252Fwww.mayibao.cn%252F'">支付宝支付</button>
+    </div>
+</body>
+</html>
