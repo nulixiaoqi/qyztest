@@ -16,14 +16,12 @@
           }
         }
         ready(function doTradePay(){
-          document.querySelector('.tradeno').addEventListener('click', function() {
             AlipayJSBridge.call("tradePay", {
               orderStr: "alipay_sdk=alipay-sdk-java-4.39.39.ALL&app_id=2017060807451366&biz_content=%7B%22out_trade_no%22%3A%22tradeno20240514153103407%22%2C%22product_code%22%3A%22QUICK_MSECURITY_PAY%22%2C%22subject%22%3A%22%E6%B5%8B%E8%AF%95%E5%95%86%E5%93%81%22%2C%22total_amount%22%3A%220.01%22%7D&charset=UTF8&format=json&method=alipay.trade.app.pay&sign=C7nTw1%2BRTadsQmodtZG6SxOAB31wONTQVvycalK%2F6FLrbSMyjpwdNiPGhCH3oa75UeUoqV57Q7WE%2FsJGoxfe6LLiNZ%2FSBeJYPu2nexZt%2FqMv9Wg3aptr0e8wp%2F0q0zQtlSoR%2BkSwY6GGXMvG4ILA%2FoY%2BqASUpgiUF2DxDrGV7Dw%3D&sign_type=RSA&timestamp=2024-05-14+15%3A31%3A03&version=1.0"
             }, function(result) {
               alert(JSON.stringify(result));
             });
           });
-        });
   </script>
   <style>
         /* 页面和背景样式 */
