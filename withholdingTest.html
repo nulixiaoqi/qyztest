@@ -99,7 +99,6 @@
   }
   ready(function(){
     document.querySelector('.orderstr').addEventListener('click', function() {
-      alert('已点击');
       AlipayJSBridge.call("tradePay", {
         orderStr: "alipay_sdk=alipay-sdk-java-4.39.162.DEV&app_id=2017060807451366&biz_content=%7B%22agreement_sign_params%22%3A%7B%22access_params%22%3A%7B%22channel%22%3A%22ALIPAYAPP%22%7D%2C%22external_agreement_no%22%3A%22payW20240731153747719%22%2C%22personal_product_code%22%3A%22GENERAL_WITHHOLDING_P%22%2C%22sign_notify_url%22%3A%22http%3A%5C%2F%5C%2Fyuanqi.ngrok.sapronlee.com%5C%2Ffwc%5C%2Fgateway.do%22%2C%22sign_scene%22%3A%22INDUSTRY%7CCARRENTAL%22%7D%2C%22ext_user_info%22%3A%7B%22cert_no%22%3A%22130982198701017314%22%2C%22need_check_info%22%3A%22T%22%7D%2C%22out_trade_no%22%3A%22tradeno20240731153747719%22%2C%22product_code%22%3A%22QUICK_MSECURITY_PAY%22%2C%22subject%22%3A%22%E6%B5%8B%E8%AF%95%E5%95%86%E5%93%81%22%2C%22total_amount%22%3A%220.01%22%7D&charset=UTF8&format=json&method=alipay.trade.app.pay&return_url=https%3A%2F%2Fwww.baidu.com%2Fgateway.do&sign=fmbj%2BH9otp9sCCEwdz0oVQq6dk13rFsl1Lpy55LQEl682QjCFNKGQfsbn2okmaMJV0dGfxT6WOYiTwwXQyAt%2B462eNjCXUp5v30SfmmxYiCOivj5IwUjYKLSXvp%2BGnWYlrlvrET9PWkzudzGSLBM6jELWgctoAvms20DO2iN1HU%3D&sign_type=RSA&timestamp=2024-07-31+15%3A37%3A47&version=1.0"
       }, function(result) {
