@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在线敲木鱼积攒功德</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #f5f3e8 0%, #e8e0d5 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            color: #8B4513;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #A0522D;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+
+        .fish-container {
+            position: relative;
+            margin: 2rem 0;
+            display: inline-block;
+        }
+
+        .fish {
+            width: 200px;
+            height: 200px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="%23DEB887">\n        <path d="M256 32c132.5 0 240 107.5 240 240S388.5 512 256 512 16 404.5 16 272 123.5 32 256 32zm0 48c-106.0 0-192 86.0-192 192s86.0 192 192 192 192-86.0 192-192-86.0-192-192-192zm-48 80c8.84 0 16 7.16 16 16v80c0 8.84-7.16 16-16 16s-16-7.16-16-16v-80c0-8.84 7.16-16 16-16zm96 0c8.84 0 16 7.16 16 16v80c0 8.84-7.16 16-16 16s-16-7.16-16-16v-80c0-8.84 7.16-16 16-16z"/>\n        </svg>') no-repeat center;
+            background-size: contain;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 50%;
+            box-shadow: 0 8px 16px rgba(139, 69, 19, 0.3);
+            border: 3px solid #DEB887;
+        }
+
+        .fish:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 24px rgba(139, 69, 19, 0.4);
+        }
+
+        .fish:active {
+            transform: scale(0.95);
+        }
+
+        .fish.clicked {
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes shake {
+            0% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.1) rotate(-5deg); }
+            50% { transform: scale(1.1) rotate(5deg); }
+            75% { transform: scale(1.1) rotate(-5deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        @keyframes floatUp {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) scale(0.5);
+            }
+        }
+
+        .floating-text {
+            position: absolute;
+            color: #FF6B35;
+            font-weight: bold;
+            font-size: 1.2rem;
+            pointer-events: none;
+            animation: floatUp 1s ease-out forwards;
+        }
+
+        .stats {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .merit-count {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #8B4513;
+            margin-bottom: 0.5rem;
+        }
+
+        .merit-label {
+            font-size: 1rem;
+            color: #A0522D;
+            opacity: 0.8;
+        }
+
+        .sound-btn {
+            background: #DEB887;
+            color: #8B4513;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 0 5px;
+            transition: all 0.3s ease;
+        }
+
+        .sound-btn:hover {
+            background: #CD853F;
+            transform: translateY(-2px);
+        }
+
+        .sound-btn.active {
+            background: #8B4513;
+            color: white;
+        }
+
+        .instructions {
+            margin-top: 2rem;
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .achievement {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #8B4513;
+            padding: 1rem;
+            border-radius: 15px;
+            margin-top: 1rem;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            display: none;
+        }
+
+        .achievement.show {
+            display: block;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #DEB887;
+            border-radius: 50%;
+            animation: particleFloat 6s infinite linear;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .title {
+                font-size: 2rem;
+            }
+
+            .fish {
+                width: 150px;
+                height: 150px;
+            }
+
+            .merit-count {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+
+    <div class="container">
+        <h1 class="title">敲木鱼积攒功德</h1>
+        <p class="subtitle">诚心一敲，功德+1</p>
+
+        <div class="fish-container" id="fishContainer">
+            <div class="fish" id="fish"></div>
+        </div>
+
+        <div class="controls">
+            <button class="sound-btn" id="soundBtn" onclick="toggleSound()">🔊 音效开关</button>
+            <button class="sound-btn" onclick="resetMerit()">🔄 清零功德</button>
+        </div>
+
+        <div class="stats">
+            <div class="merit-count" id="meritCount">0</div>
+            <div class="merit-label">累计功德</div>
+        </div>
+
+        <div class="achievement" id="achievement">
+            🎊 功德无量！恭喜获得成就：
+            <span id="achievementText"></span>
+        </div>
+
+        <div class="instructions">
+            <p>🐟 点击木鱼即可积攒功德</p>
+            <p>🔔 每敲一次木鱼都会产生功德数值</p>
+            <p>📈 达到特定功德时会解锁成就</p>
+            <p>💝 积善之家必有余庆，功德无量！</p>
+        </div>
+    </div>
+
+    <script>
+        let meritCount = 0;
+        let soundEnabled = true;
+        const achievementLevels = {
+            1: "初入佛门",
+            33: "虔诚信徒",
+            108: "精进修行",
+            365: "功德圆满",
+            999: "金刚菩提",
+            2026: "佛光普照"
+        };
+
+        // 音效
+        function playSound() {
+            if (!soundEnabled) return;
+
+            const context = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = context.createOscillator();
+            const gainNode = context.createGain();
+
+            oscillator.connect(gainNode);
+            gainNode.connect(context.destination);
+
+            oscillator.frequency.setValueAtTime(800, context.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(400, context.currentTime + 0.1);
+
+            gainNode.gain.setValueAtTime(0.1, context.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, context.currentTime + 0.1);
+
+            oscillator.type = 'sine';
+            oscillator.start(context.currentTime);
+            oscillator.stop(context.currentTime + 0.1);
+        }
+
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            const btn = document.getElementById('soundBtn');
+            if (soundEnabled) {
+                btn.textContent = '🔊 音效开关';
+                btn.classList.add('active');
+            } else {
+                btn.textContent = '🔇 音效开关';
+                btn.classList.remove('active');
+            }
+        }
+
+        function createFloatingText(x, y) {
+            const text = document.createElement('div');
+            text.className = 'floating-text';
+            text.textContent = '+1功德';
+
+            const rect = document.getElementById('fish').getBoundingClientRect();
+            text.style.left = rect.left + rect.width / 2 - 20 + 'px';
+            text.style.top = rect.top + 'px';
+
+            document.body.appendChild(text);
+
+            setTimeout(() => {
+                text.remove();
+            }, 1000);
+        }
+
+        function createParticles() {
+            for (let i = 0; i < 5; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 2 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                document.getElementById('particles').appendChild(particle);
+
+                setTimeout(() => {
+                    particle.remove();
+                }, 6000);
+            }
+        }
+
+        function checkAchievements() {
+            const achievements = Object.keys(achievementLevels).map(Number).sort((a, b) => a - b);
+            for (let level of achievements) {
+                if (meritCount === level) {
+                    showAchievement(achievementLevels[level]);
+                    break;
+                }
+            }
+        }
+
+        function showAchievement(text) {
+            const achievement = document.getElementById('achievement');
+            const achievementText = document.getElementById('achievementText');
+            achievementText.textContent = text;
+            achievement.classList.add('show');
+
+            setTimeout(() => {
+                achievement.classList.remove('show');
+            }, 3000);
+        }
+
+        function saveMerit() {
+            localStorage.setItem('meritCount', meritCount.toString());
+        }
+
+        function loadMerit() {
+            const saved = localStorage.getItem('meritCount');
+            if (saved) {
+                meritCount = parseInt(saved);
+                document.getElementById('meritCount').textContent = meritCount;
+                checkAchievements();
+            }
+        }
+
+        function resetMerit() {
+            if (confirm('确定要清零所有功德吗？此操作不可撤销！')) {
+                meritCount = 0;
+                document.getElementById('meritCount').textContent = 0;
+                saveMerit();
+            }
+        }
+
+        document.getElementById('fish').addEventListener('click', function(e) {
+            this.classList.add('clicked');
+
+            setTimeout(() => {
+                this.classList.remove('clicked');
+            }, 500);
+
+            meritCount++;
+            document.getElementById('meritCount').textContent = meritCount;
+
+            createFloatingText();
+            playSound();
+            createParticles();
+            checkAchievements();
+            saveMerit();
+        });
+
+        // 键盘空格键敲击
+        document.addEventListener('keydown', function(e) {
+            if (e.code === 'Space') {
+                e.preventDefault();
+                document.getElementById('fish').click();
+            }
+        });
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            loadMerit();
+            toggleSound(); // 初始化音效状态
+        });
+
+        // 定期清除老的粒子
+        setInterval(() => {
+            const particles = document.querySelectorAll('.particle');
+            if (particles.length > 20) {
+                for (let i = particles.length - 1; i >= 20; i--) {
+                    particles[i].remove();
+                }
+            }
+        }, 10000);
+    </script>
+</body>
+</html>
