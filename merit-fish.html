@@ -245,14 +245,14 @@
 
         /* 成就面板样式 - 嵌入页面 */
         .achievement-section {
-            width: 25%;
-            max-width: 150px;
+            width: 150px;
             background: rgba(255, 255, 255, 0.98);
             border-radius: 10px;
             padding: 0;
             box-shadow: 0 3px 10px rgba(139, 69, 19, 0.12);
             overflow: hidden;
             border: 1px solid rgba(222, 184, 135, 0.3);
+            flex-shrink: 0;
         }
 
         .achievement-section-header {
@@ -458,11 +458,6 @@
                 width: 160px;
                 height: 160px;
             }
-
-            .achievement-section,
-            .auto-merit-section {
-                max-width: 120px;
-            }
         }
 
 /* 大屏 PC 响应式 (1400px+) */
@@ -484,11 +479,6 @@
             .merit-count {
                 font-size: 3.5rem;
             }
-
-            .achievement-section,
-            .auto-merit-section {
-                max-width: 180px;
-            }
         }
 
 /* 超大屏 PC 响应式 (1920px+) */
@@ -509,11 +499,6 @@
 
             .merit-count {
                 font-size: 4rem;
-            }
-
-            .achievement-section,
-            .auto-merit-section {
-                max-width: 200px;
             }
         }
 
@@ -549,8 +534,7 @@
 
             .achievement-section,
             .auto-merit-section {
-                max-width: 100%;
-                width: 80%;
+                width: 150px;
             }
 
             .achievement-section-header,
@@ -630,8 +614,7 @@
 
             .achievement-section,
             .auto-merit-section {
-                max-width: 100%;
-                width: 90%;
+                width: 150px;
             }
 
             .achievement-item {
@@ -883,14 +866,14 @@
         }
 
         .auto-merit-section {
-            width: 25%;
-            max-width: 150px;
+            width: 150px;
             background: rgba(255, 255, 255, 0.98);
             border-radius: 10px;
             padding: 0;
             box-shadow: 0 3px 10px rgba(34, 139, 34, 0.12);
             overflow: hidden;
             border: 1px solid rgba(144, 238, 144, 0.3);
+            flex-shrink: 0;
         }
 
         .auto-merit-section-header {
