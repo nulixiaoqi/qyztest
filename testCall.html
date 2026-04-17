@@ -1,19 +1,156 @@
-<HTML>
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-<title>linke</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Linke - 现金宝</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 350px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 200px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #495057;
+            border: 1px solid #dee2e6;
+        }
+
+        .btn-secondary:hover {
+            background: #e9ecef;
+            transform: translateY(-1px);
+        }
+
+        .separator {
+            margin: 25px 0;
+            display: flex;
+            align-items: center;
+            color: #888;
+            font-size: 14px;
+        }
+
+        .separator::before,
+        .separator::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #ddd;
+            margin: 0 10px;
+        }
+
+        @media (max-width: 375px) {
+            .container {
+                padding: 30px 20px;
+                margin: 0 10px;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+
+            .btn {
+                font-size: 15px;
+                padding: 12px 28px;
+                min-width: 180px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                max-width: 400px;
+            }
+        }
+    </style>
 </head>
 <body>
-<a href="htffundxjb://action?alipayAppdonwlaodPlanId=bb035fe294cc421083f21e116b5e1b2f">唤起现金宝APP</a>
+    <div class="container">
+        <h1>🚀 Linke</h1>
 
-<BR/>
+        <a href="htffundxjb://action?type=3rdBindCard&subType=alipay&alipayAppdonwlaodPlanId=bb035fe294cc421083f21e116b5e1b2f"
+           class="btn btn-primary">
+            📱 唤起现金宝APP
+        </a>
 
-<input type="button" value="Say hello (js2Android)" onClick="showAndroidToast('Hello Android!')" />
+        <a href="htffundxjb://action?alipayAppdonwlaodPlanId=bb035fe294cc421083f21e116b5e1b2f"
+           class="btn btn-primary">
+            📱 唤起现金宝APP2
+        </a>
+        <div class="separator">或</div>
 
-<script type="text/javascript">
-    function showAndroidToast(toast) 
-    {
-        Android.showToast(toast);
-    }
-</script>
+        <input type="button"
+               value="Say hello (js2Android)"
+               class="btn btn-secondary"
+               onclick="showAndroidToast('Hello Android!')" />
+    </div>
+
+    <script type="text/javascript">
+        function showAndroidToast(toast) {
+            try {
+                if (window.Android && Android.showToast) {
+                    Android.showToast(toast);
+                } else {
+                    // Fallback for debug in browser
+                    alert('Toast: ' + toast);
+                }
+            } catch (e) {
+                console.log('Android interface not available:', e);
+                alert('Android interface not available: ' + toast);
+            }
+        }
+    </script>
 </body>
-</HTML>
+</html>
